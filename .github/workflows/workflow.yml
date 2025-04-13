@@ -43,6 +43,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: main
 
       - name: Build Project
         run: |
@@ -53,11 +55,10 @@ jobs:
           status_url="https://img.shields.io/github/workflow/status/ihorvyt/actions-hw/Python%20Tests%20and%20Build?label=Build&style=for-the-badge"
 
           if ! grep -q "![Build Status]" README.md; then
-            # Add the badge at the top of README.md if it doesn't exist
             sed -i "1s|^|![Build Status]($status_url)\n\n|" README.md
             git config --global user.name 'github-actions'
             git config --global user.email 'github-actions@github.com'
             git add README.md
             git commit -m "Add build status badge"
-            git push
+            git push origin HEAD:main
           fi
