@@ -53,7 +53,7 @@ jobs:
       - name: Add build badge to README
         run: |
           status_url="https://img.shields.io/github/workflow/status/ihorvyt/actions-hw/Python%20Tests%20and%20Build?label=Build&style=for-the-badge"
-          if ! grep -q "$status_url" README.md; then
+          if ! grep -q "![Build Status]" README.md; then
             sed -i "1s|^|![Build Status]($status_url)\n\n|" README.md
             git config --global user.name 'github-actions'
             git config --global user.email 'github-actions@github.com'
